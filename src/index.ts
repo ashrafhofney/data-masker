@@ -7,6 +7,12 @@ export default class DataMasker {
   private keys: string[];
   private secrets: string[];
 
+  /**
+   * This is a constructor function that initializes an object with properties based on the input
+   * configuration.
+   * @param {MaskConfigInput} config - The `config` parameter is an object that contains the following
+   * optional properties:
+   */
   constructor(config: MaskConfigInput) {
     this.data = config?.data || "";
     this.mask = config?.mask || "******";
@@ -17,6 +23,11 @@ export default class DataMasker {
     this.secrets = config?.values || [];
   }
 
+  /**
+   * The "run" function replaces specified keys and secrets in a JSON string with a mask.
+   * @returns The `run()` function is returning the modified `data` string after replacing the
+   * specified JSON keys and secrets with the mask value.
+   */
   run() {
     this.keys.forEach((key: string) => {
       this.replaceJsonKey(key);
@@ -29,6 +40,11 @@ export default class DataMasker {
     return this.data;
   }
 
+  /**
+   * This function replaces a JSON key with a masked value in a given string.
+   * @param {string} key - The `key` parameter is a string representing the key in a JSON object that
+   * needs to be replaced with a masked value.
+   */
   private replaceJsonKey(key: string) {
     const stringQuote = "('|\")?";
     const skipSpaces = "\\s*";
@@ -49,6 +65,11 @@ export default class DataMasker {
     this.data = this.data.replace(regex, '"' + key + '":"' + this.mask + '"');
   }
 
+  /**
+   * This function replaces a specific key in a string with a mask value.
+   * @param {string} key - The `key` parameter is a string representing the key in a query string that
+   * needs to be replaced with a mask.
+   */
   private replaceStringKey(key: string) {
     const regex = new RegExp(`${key}=[^&]+`, "g");
     this.data = this.data.replace(regex, `${key}=${this.mask}&`);
