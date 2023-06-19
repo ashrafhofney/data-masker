@@ -4,12 +4,18 @@
   "description": "This package is form masking sensitive data.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
-  "keywords": [],
+  "keywords": [
+    "mask",
+    "data masker",
+    "masker",
+    "data-masker"
+  ],
   "author": "am.hofney@gmail.com",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.3.1",
     "typescript": "^5.1.3"
   },
   "dependencies": {
